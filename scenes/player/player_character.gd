@@ -52,14 +52,12 @@ func _ready() -> void:
   $JumpTimer.wait_time = CharStats.GET_TOTAL_JUMP_TIME();
 # end _init
 
-func _process(delta: float) -> void:
-  Global.main.debugLabel.text = str(str(CHAR_STATES.keys()[state]));
-  Global.main.debugLabel.text += "\n" + str(velocity);
-  
+func _process(delta: float) -> void:  
   if(is_on_floor()):
     resetJumpFlags();
   elif(coyoteTimeRemaining > 0.0):
     coyoteTimeRemaining -= delta;
+    
   updateSprite();
   setInputData();
   processState(delta);
@@ -206,7 +204,7 @@ func neutralStateCheck() -> void:
 # end idleFallOrSlideStateCheck
 
 func moveStateCheck() -> void:
-  if(state != CHAR_STATES.DASHING && inputData["char_dash_pressed"] && is_on_floor()):
+  if(state != CHAR_STATES.DASHING && isDashBuffered() && is_on_floor()):
     state = CHAR_STATES.DASHING;
   elif(state != CHAR_STATES.JUMPING && isJumpBuffered() && canJump()):
     state = CHAR_STATES.JUMPING;
@@ -262,7 +260,19 @@ func canJump() -> bool:
 # end canJump
 
 func isJumpBuffered() -> bool:
-  return inputData["char_jump_pressed"] || (inputData["char_jump_held"] && inputData["char_jump_held_time"] <= CharStats.MAX_JUMP_BUFFER_TIME);
+  return inputData["char_jump_pressed"] || (inputData["char_jump_held"] && inputData["char_jump_held_time"] <= CharStats.MAX_INPUT_BUFFER_TIME);
+# end isJumpBuffered
+
+func isDashBuffered() -> bool:
+  return inputData["char_dash_pressed"] || (inputData["char_dash_held"] && inputData["char_dash_held_time"] <= CharStats.MAX_INPUT_BUFFER_TIME);
+# end isJumpBuffered
+
+func isAttackBuffered() -> bool:
+  return inputData["char_attack_pressed"] || (inputData["char_attack_held"] && inputData["char_attack_held_time"] <= CharStats.MAX_INPUT_BUFFER_TIME);
+# end isJumpBuffered
+
+func isSpecialBuffered() -> bool:
+  return inputData["char_special_pressed"] || (inputData["char_special_held"] && inputData["char_special_held_time"] <= CharStats.MAX_INPUT_BUFFER_TIME);
 # end isJumpBuffered
 
 func resetJumpFlags() -> void:

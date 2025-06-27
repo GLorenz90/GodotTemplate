@@ -2,7 +2,7 @@ extends Node
 
 const MAX_VELOCITY := 1000.0;
 const MAX_COYOTE_TIME := 0.1;
-const MAX_JUMP_BUFFER_TIME := 0.1;
+const MAX_INPUT_BUFFER_TIME := 0.1;
 
 # ADJUSTABLES ==================================================================
 const BASE_WALK_SPEED := 300.0;
