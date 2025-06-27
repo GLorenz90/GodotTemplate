@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://wkxfusbsmxrh"]
+[gd_scene load_steps=4 format=3 uid="uid://wkxfusbsmxrh"]
 
 [ext_resource type="Script" uid="uid://ce8dhu2vfltnl" path="res://scenes/player/player_character.gd" id="1_56udc"]
+[ext_resource type="Texture2D" uid="uid://c0s6iocig0nsr" path="res://images/character/WolfIdle.png" id="2_eebfp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e1j0t"]
+height = 44.0
 
 [node name="PlayerCharacter" type="CharacterBody2D"]
 script = ExtResource("1_56udc")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_eebfp")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_e1j0t")
+
+[node name="DashTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="JumpTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
