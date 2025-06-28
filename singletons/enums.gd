@@ -1,1 +1,23 @@
 extends Node
+
+enum CHAR_STATES {
+  INIT,
+  IDLE,
+  RUNNING,
+  DASHING,
+  JUMPING,
+  FALLING,
+  WALL_SLIDING,
+  CLIMBING
+}
+
+# TODO: Special attacks go here
+enum ATTACK_STATES{
+  NONE,
+  SLASH_1,
+  SLASH_2,
+  SLASH_3,
+  SLASH_AIR,
+  SLASH_DASH,
+  SLASH_WALL_SLIDE,
+}
