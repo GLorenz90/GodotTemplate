@@ -3,6 +3,7 @@ extends Node
 const MAX_VELOCITY := 1000.0;
 const MAX_COYOTE_TIME := 0.1;
 const MAX_INPUT_BUFFER_TIME := 0.1;
+const WALL_NUDGE_SPEED := 100.0;
 
 const ATTACK_TIMING = {
   Enums.ATTACK_STATES.NONE: 0.01,
@@ -17,10 +18,10 @@ const COMBO_ATTACK_STATES = [Enums.ATTACK_STATES.NONE, Enums.ATTACK_STATES.SLASH
 
 # ADJUSTABLES ==================================================================
 const BASE_WALK_SPEED := 200.0;
-const BASE_DASH_SPEED := 400.0;
+const BASE_DASH_SPEED := 350.0;
 const BASE_DASH_TIME := 0.1;
-const BASE_JUMP_TIME := 0.1;
-const BASE_JUMP_VELOCITY := 400.0;
+const BASE_JUMP_TIME := 0.15;
+const BASE_JUMP_VELOCITY := 300.0;
 const BASE_WALL_SLIDE_SPEED := 100.0;
 const BASE_ATTACK_DELAY := 0.2;
 

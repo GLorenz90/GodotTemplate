@@ -11,6 +11,11 @@ enum CHAR_STATES {
   CLIMBING
 }
 
+enum STATE_POSITIONS {
+  RUN,
+  CHANGE
+}
+
 # TODO: Special attacks go here
 enum ATTACK_STATES{
   NONE,
